@@ -1,0 +1,383 @@
+/* Base Styles */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.piano-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #0f2235;
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: white;
+  margin-bottom: 20px;
+}
+
+.instructions {
+  font-size: medium;
+  color: azure;
+  font-weight: 400;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+  max-width: 800px;
+}
+
+/* Piano Styles */
+.piano-scroll-container {
+  width: 100%;
+  max-width: 1200px;
+  background: #111;
+  border-radius: 10px;
+  overflow-x: auto;
+  padding: 0 10px;
+  height: 300px;
+  
+}
+
+
+.piano-keys {
+  display: flex;
+  height: 100%;
+  min-width: max-content;
+  position: relative;
+}
+
+.white-key-wrapper {
+  position: relative;
+  flex: 0 0 60px;
+  height: 100%;
+}
+
+.black-key-wrapper {
+  position: absolute;
+  top: 0;
+  right: -15px;
+  z-index: 2;
+  height: 60%;
+}
+
+.key {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+
+.key.white {
+  width: 100%;
+  height: 100%;
+  background: white;
+  border: 1px solid #999;
+  border-radius: 0 0 5px 5px;
+  z-index: 1;
+  color: black;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding-bottom: 8px;
+}
+
+.key.black {
+  width: 36px;
+  height: 90%;
+  background: black;
+  z-index: 2;
+  color: white;
+  border-radius: 0 0 5px 5px;
+  padding-bottom: 4px;
+}
+
+.key.active {
+  background: #f88 !important;
+}
+
+/* Training Section */
+.training-section {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin: 20px 0;
+  width: 100%;
+  max-width: 1200px;
+  z-index: 10;
+}
+
+.trainingbtn {
+  padding: 10px 18px;
+  margin: 15px 0;
+  border: 2px solid #2f4761;
+  cursor: pointer;
+  color: white;
+  background-color: #1f3750;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.trainingbtn:hover {
+  background-color: #2a4a6a;
+}
+
+/* Note Tracker */
+.note-tracker-container {
+  margin: 20px 0;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.note-tracker-container h3 {
+  color: white;
+  margin-top: 0;
+}
+
+.note-tracker {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.note {
+  padding: 10px 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  font-family: monospace;
+  color: white;
+  font-size: 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 80px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.note.active {
+  background: #4CAF50;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.note.just-correct {
+  animation: correctNote 0.5s ease;
+  background: #4CAF50 !important;
+}
+
+@keyframes correctNote {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.key-label {
+  font-size: 0.9rem;
+  color: #ffcc00;
+  display: block;
+  margin-top: 5px;
+}
+
+.reset-button {
+  padding: 8px 20px;
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.reset-button:hover {
+  background: #d32f2f;
+  transform: translateY(-2px);
+}
+
+/* Song List */
+.song-list {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1a2b3c;
+  border-radius: 8px;
+  padding: 15px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  margin-top: 10px;
+}
+
+.song-card {
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.song-card:last-child {
+  margin-bottom: 0;
+}
+
+.song-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.song-card h3 {
+  margin: 0 0 5px 0;
+  color: white;
+  font-size: 1.1rem;
+}
+
+.song-card p {
+  margin: 0;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+/* Footer */
+.footer {
+  font-size: 16px;
+  color: white;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-top: auto;
+  padding-top: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.footer a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.2s;
+}
+
+.footer a:hover {
+  color: #4CAF50;
+}
+
+/* Buttons */
+button {
+  padding: 8px 16px;
+  background: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background: #0b7dda;
+  transform: translateY(-1px);
+}
+
+.play-button {
+  background: #4CAF50;
+}
+
+.play-button:hover {
+  background: #3e8e41;
+}
+
+.stop-button {
+  background: #f44336;
+}
+
+.stop-button:hover {
+  background: #d32f2f;
+}
+/* Add to your existing styles */
+.note.played {
+  background: #2196F3 !important;
+  opacity: 0.7;
+}
+
+.note-tracker {
+  display: flex;
+  flex-wrap: nowrap; /* Keep notes in a single row */
+  overflow-x: auto; /* Allow horizontal scrolling */
+  justify-content: flex-start;
+
+  gap: 10px;
+  padding: 10px 0;
+  max-width: 100%;
+}
+
+.note {
+  flex: 0 0 auto; /* Don't allow notes to shrink */
+}
+/* Modal Backdrop */
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200; /* above all other content */
+}
+
+/* The centered modal box */
+.song-list-modal {
+  background: #1a2b3c;
+  border-radius: 8px;
+  padding: 24px;
+  width: 90%;
+  max-width: 400px;
+  max-height: 80%;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  color: white;
+}
+
+/* Optional header inside modal */
+.song-list-modal h2 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* List inside modal */
+.song-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Close button */
+.close-modal {
+  margin-top: 16px;
+  padding: 8px 16px;
+  background: #444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.close-modal:hover {
+  background: #555;
+}
